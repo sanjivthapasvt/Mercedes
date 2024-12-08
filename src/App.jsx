@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import Login from './pages/Login';
 import Car from './pages/Cars';
-import Car0 from './assets/0.webp';
 function App() {
   const [count, setCount]= useState(0);
   function Click(){
@@ -20,9 +19,6 @@ function App() {
 
   return (
     <>
-      <button onClick={Click}>
-        <p>You clicked {count} times</p>
-      </button>
       {!showLogin ? (
         <>
           <div className='top'>

@@ -1,9 +1,9 @@
+import Car0 from "./../assets/0.webp";
 import Car1 from "./../assets/1.webp";
 import Car2 from "./../assets/2.webp";
 import Car3 from "./../assets/3.webp";
 import Car4 from "./../assets/4.webp";
 import Car5 from "./../assets/5.webp";
-import Car0 from "./../assets/0.webp";
 import Car6 from "./../assets/6.webp";
 import Car7 from "./../assets/7.webp";
 function Car() {
