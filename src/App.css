@@ -1,0 +1,26 @@
+.carimage{
+  margin-top: 5px;
+}
+
+.top{
+  text-align: right;
+}
+.top h1{
+  text-align: center;
+}
+.top button{
+  padding: 5px;
+  font-size: 15px;
+  margin-right: 100px;
+  cursor: pointer;
+  opacity: 1;
+  background-color: white;
+  border: 0px;
+}
+
+.CarList{
+    text-align: center;
+}
+.CarList h2{
+  text-align: left;
+}
