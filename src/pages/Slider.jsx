@@ -1,113 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import image1 from'./../assets/slider1.webp'
+import image2 from './../assets/slider2.webp'
+import image3 from './../assets/slider3.webp'
+import image4 from './../assets/slider4.webp'
+import image5 from './../assets/slider5.webp'
+import image6 from './../assets/slider6.webp'
 
-import "./Slider.css";
+const images = [
+  image1,image2,image3,image4,image5,image6
+];
 
-function CarSlider({ children }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [slideDone, setSlideDone] = useState(true);
-  const [timeID, setTimeID] = useState(null);
-
-  useEffect(() => {
-    if (slideDone) {
-      setSlideDone(false);
-      setTimeID(
-        setTimeout(() => {
-          slideNext();
-          setSlideDone(true);
-        }, 5000)
-      );
-    }
-  }, [slideDone]);
-
-  const slideNext = () => {
-    setActiveIndex((val) => {
-      if (val >= children.length - 1) {
-        return 0;
-      } else {
-        return val + 1;
-      }
-    });
+const ImageSlider = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500, 
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true, 
+    autoplaySpeed: 5000, 
+    arrows: true,
+    nextArrow: <div style={{ fontSize: "2rem", color: "black", zIndex: 1 }}>➡</div>,
+    prevArrow: <div style={{ fontSize: "2rem", color: "black", zIndex: 1 }}>⬅</div>,
   };
 
-  const slidePrev = () => {
-    setActiveIndex((val) => {
-      if (val <= 0) {
-        return children.length - 1;
-      } else {
-        return val - 1;
-      }
-    });
-  };
-
-  const AutoPlayStop = () => {
-    if (timeID > 0) {
-      clearTimeout(timeID);
-      setSlideDone(false);
-    }
-  };
-
-  const AutoPlayStart = () => {
-    if (!slideDone) {
-      setSlideDone(true);
-    }
-  };
 
   return (
-    <div
-      className="container__slider"
-      onMouseEnter={AutoPlayStop}
-      onMouseLeave={AutoPlayStart}
-    >
-      {children.map((item, index) => {
-        return (
-          <div
-            className={"slider__item slider__item-active-" + (activeIndex + 1)}
-            key={index}
-          >
-            {item}
+    <div style={{ width: "80%", margin: "0 auto" }}>
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img src={image} alt={`Slide ${index + 1}`} style={{ width: "100%", height: "auto" }} />
           </div>
-        );
-      })}
-
-      <div className="container__slider__links">
-        {children.map((item, index) => {
-          return (
-            <button
-              key={index}
-              className={
-                activeIndex === index
-                  ? "container__slider__links-small container__slider__links-small-active"
-                  : "container__slider__links-small"
-              }
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveIndex(index);
-              }}
-            ></button>
-          );
-        })}
-      </div>
-
-      <button
-        className="slider__btn-next"
-        onClick={(e) => {
-          e.preventDefault();
-          slideNext();
-        }}
-      >
-        {">"}
-      </button>
-      <button
-        className="slider__btn-prev"
-        onClick={(e) => {
-          e.preventDefault();
-          slidePrev();
-        }}
-      >
-        {"<"}
-      </button>
+        ))}
+      </Slider>
     </div>
   );
-}
+};
 
-export default CarSlider;
+export default ImageSlider;
