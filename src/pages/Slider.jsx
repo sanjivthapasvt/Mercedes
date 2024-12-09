@@ -9,34 +9,59 @@ import image4 from './../assets/slider4.webp'
 import image5 from './../assets/slider5.webp'
 import image6 from './../assets/slider6.webp'
 
+//Array of Images
 const images = [
   image1,image2,image3,image4,image5,image6
 ];
 
-const ImageSlider = () => {
+//For Next Arrow
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black" }}
+      onClick={onClick}
+    />
+  );
+}
+
+//For previous Arrow
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black"}}
+      onClick={onClick}
+    />
+  );
+}
+
+//Main function for image slider
+function ImageSlider() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500, 
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true, 
-    autoplaySpeed: 5000, 
-    arrows: true,
-    nextArrow: <div style={{ fontSize: "2rem", color: "black", zIndex: 1 }}>➡</div>,
-    prevArrow: <div style={{ fontSize: "2rem", color: "black", zIndex: 1 }}>⬅</div>,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />
   };
-
+  const images = [
+    image1,image2,image3,image4,image5,image6
+  ];
 
   return (
-    <div style={{ width: "80%", margin: "0 auto" }}>
+    <div style={{ width: "60%", margin: "0 auto" }}>
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index}>
-            <img src={image} alt={`Slide ${index + 1}`} style={{ width: "100%", height: "auto" }} />
+            <img src={image} alt={`Slide ${index + 1}`} style={{ width: "90%", height: "auto" }} />
           </div>
         ))}
       </Slider>
+
     </div>
   );
 };
